@@ -63,6 +63,8 @@ def usage():
     print("Input is read from stdin.")
 
 def get_outfile(path):
-    return os.fdopen(sys.stdout.fileno(), "wb", closefd=False)
+    if path == "-":
+        return os.fdopen(sys.stdout.fileno(), "wb", closefd=False)
+    return open(path, "wb")
 
 main()
